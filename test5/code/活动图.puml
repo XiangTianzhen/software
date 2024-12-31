@@ -1,0 +1,20 @@
+@startuml
+start
+
+:用户注册;
+:用户登录;
+if (登录成功?) then (yes)
+    :搜索课程;
+    :选择课程;
+    :下单选课;
+    if (支付成功?) then (yes)
+        :订单确认;
+    else (no)
+        :支付失败;
+    endif
+else (no)
+    :提示登录失败;
+endif
+
+stop
+@enduml

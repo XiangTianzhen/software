@@ -1,0 +1,41 @@
+@startuml
+package "教务管理系统" {
+    [用户界面] as UI
+    [用户管理组件] as UserManagement
+    [课程管理组件] as CourseManagement
+    [成绩管理组件] as GradeManagement
+    [排课管理组件] as SchedulingManagement
+    [资源管理组件] as ResourceManagement
+    [班级管理组件] as ClassManagement
+    [财务信息管理组件] as FinanceManagement
+    [数据库组件] as Database
+
+    UI --> UserManagement : 调用
+    UserManagement --> Database : 查询/更新用户信息
+
+    UI --> CourseManagement : 调用
+    CourseManagement --> Database : 查询/更新课程信息
+
+    UI --> GradeManagement : 调用
+    GradeManagement --> Database : 查询/更新成绩信息
+    GradeManagement --> CourseManagement : 获取课程信息
+    GradeManagement --> UserManagement : 获取学生信息
+
+    UI --> SchedulingManagement : 调用
+    SchedulingManagement --> Database : 查询/更新排课信息
+    SchedulingManagement --> CourseManagement : 获取课程信息
+    SchedulingManagement --> UserManagement : 获取教师信息
+
+    UI --> ResourceManagement : 调用
+    ResourceManagement --> Database : 查询/更新资源信息
+    ResourceManagement --> UserManagement : 获取上传者信息
+
+    UI --> ClassManagement : 调用
+    ClassManagement --> Database : 查询/更新班级信息
+    ClassManagement --> UserManagement : 获取班主任信息
+
+    UI --> FinanceManagement : 调用
+    FinanceManagement --> Database : 查询/更新财务信息
+    FinanceManagement --> UserManagement : 获取学生信息
+}
+@enduml

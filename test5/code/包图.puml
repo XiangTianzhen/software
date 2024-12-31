@@ -1,0 +1,158 @@
+@startuml
+
+package "教务管理系统" {
+
+    package "用户管理" {
+        class 管理员 {
+            +管理员ID: int
+            +姓名: String
+            +邮箱: String
+            +密码: String
+        }
+        class 教师 {
+            +教师ID: int
+            +姓名: String
+            +邮箱: String
+            +密码: String
+        }
+        class 学生 {
+            +学生ID: int
+            +姓名: String
+            +邮箱: String
+            +密码: String
+        }
+        class 用户服务 {
+            +注册()
+            +登录()
+            +重置密码()
+        }
+    }
+
+    package "课程管理" {
+        class 课程 {
+            +课程ID: int
+            +名称: String
+            +描述: String
+            +学分: int
+            +授课教师ID: int
+            +上课时间: String
+            +地点: String
+        }
+        class 课程服务 {
+            +添加课程()
+            +更新课程()
+            +删除课程()
+            +查询课程()
+        }
+    }
+
+    package "成绩管理" {
+        class 成绩 {
+            +成绩ID: int
+            +学生ID: int
+            +课程ID: int
+            +分数: float
+        }
+        class 成绩服务 {
+            +录入成绩()
+            +查询成绩()
+            +更新成绩()
+        }
+    }
+
+    package "排课管理" {
+        class 排课 {
+            +排课ID: int
+            +课程ID: int
+            +教师ID: int
+            +教室ID: int
+            +时间: String
+        }
+        class 排课服务 {
+            +自动排课()
+            +手动调整()
+        }
+    }
+
+    package "资源管理" {
+        class 教学资源 {
+            +资源ID: int
+            +标题: String
+            +类型: String
+            +上传者ID: int
+            +文件路径: String
+        }
+        class 资源服务 {
+            +上传资源()
+            +下载资源()
+            +共享资源()
+        }
+    }
+
+    package "班级管理" {
+        class 班级 {
+            +班级ID: int
+            +名称: String
+            +班主任ID: int
+            +学生列表: List
+        }
+        class 班级服务 {
+            +创建班级()
+            +调整班级()
+            +查询班级()
+        }
+    }
+
+    package "财务信息管理" {
+        class 财务信息 {
+            +财务ID: int
+            +学生ID: int
+            +缴费状态: String
+            +欠费信息: String
+        }
+        class 财务服务 {
+            +管理缴费()
+            +管理欠费()
+        }
+    }
+
+    package "打印信息管理" {
+        class 打印服务 {
+            +打印成绩单()
+            +打印报表()
+        }
+    }
+
+    package "综合信息查询" {
+        class 查询服务 {
+            +根据条件查询()
+        }
+    }
+
+    package "系统管理" {
+        class 系统日志 {
+            +日志ID: int
+            +操作ID: int
+            +操作类型: String
+            +时间戳: Date
+        }
+        class 系统管理服务 {
+            +用户管理()
+            +权限设置()
+            +日志记录()
+        }
+    }
+
+    用户服务 --> 数据库 : <<使用>>
+    课程服务 --> 数据库 : <<使用>>
+    成绩服务 --> 数据库 : <<使用>>
+    排课服务 --> 数据库 : <<使用>>
+    资源服务 --> 数据库 : <<使用>>
+    班级服务 --> 数据库 : <<使用>>
+    财务服务 --> 数据库 : <<使用>>
+    查询服务 --> 数据库 : <<使用>>
+    系统管理服务 --> 数据库 : <<使用>>
+
+}
+
+@enduml

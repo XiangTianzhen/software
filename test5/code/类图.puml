@@ -1,0 +1,99 @@
+@startuml
+
+class 学生 {
+    学生ID: int
+    姓名: String
+    邮箱: String
+    密码: String
+    注册(): void
+    登录(): void
+    查询课程(): List<课程>
+}
+
+class 教师 {
+    教师ID: int
+    姓名: String
+    邮箱: String
+    密码: String
+    录入成绩(): void
+    查询成绩(): List<成绩>
+}
+
+class 管理员 {
+    管理员ID: int
+    姓名: String
+    邮箱: String
+    密码: String
+    审核成绩(): void
+}
+
+class 课程 {
+    课程ID: int
+    名称: String
+    描述: String
+    学分: int
+    授课教师ID: int
+    上课时间: String
+    地点: String
+    添加课程(): void
+    更新课程信息(): void
+}
+
+class 成绩 {
+    成绩ID: int
+    学生ID: int
+    课程ID: int
+    分数: float
+    录入成绩(): void
+    更新成绩(): void
+}
+
+class 排课 {
+    排课ID: int
+    课程ID: int
+    教师ID: int
+    教室ID: int
+    时间: String
+    自动排课(): void
+    手动调整(): void
+}
+
+class 教学资源 {
+    资源ID: int
+    标题: String
+    类型: String
+    上传者ID: int
+    文件路径: String
+    上传资源(): void
+    下载资源(): void
+}
+
+class 班级 {
+    班级ID: int
+    名称: String
+    班主任ID: int
+    学生列表: List<学生>
+    创建班级(): void
+    调整班级(): void
+}
+
+class 财务信息 {
+    财务ID: int
+    学生ID: int
+    缴费状态: String
+    欠费信息: String
+    管理缴费(): void
+    管理欠费(): void
+}
+
+学生 --|> 管理员 : 继承
+教师 --|> 管理员 : 继承
+
+课程 "1" -- "0..*" 排课 : 包含
+课程 "1" -- "0..*" 教学资源 : 包含
+学生 "0..*" -- "1" 班级 : 拥有
+学生 "1" -- "0..*" 成绩 : 获得
+教师 "1" -- "0..*" 成绩 : 录入
+管理员 "1" -- "0..*" 成绩 : 审核
+
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+left to right direction
+actor 学生
+actor 教师
+actor 管理员
+
+rectangle "教务管理系统" {
+  usecase "学生注册" as UC1
+  usecase "学生登录" as UC2
+  usecase "查询课程" as UC3
+  usecase "选课" as UC4
+  usecase "查看课程详情" as UC5
+  usecase "录入成绩" as UC6
+  usecase "查询成绩" as UC7
+  usecase "查看成绩详情" as UC8
+  usecase "排课" as UC9
+  usecase "调整课程表" as UC10
+  usecase "上传教学资源" as UC11
+  usecase "下载教学资源" as UC12
+  usecase "管理用户信息" as UC13
+  usecase "审核成绩" as UC14
+  usecase "管理课程信息" as UC15
+  usecase "管理班级信息" as UC16
+  usecase "管理财务信息" as UC17
+  usecase "打印成绩单" as UC18
+  usecase "综合信息查询" as UC19
+}
+
+学生 --> UC1
+学生 --> UC2
+学生 --> UC3
+学生 --> UC4
+学生 --> UC5
+学生 --> UC7
+学生 --> UC8
+学生 --> UC12
+学生 --> UC19
+
+教师 --> UC2
+教师 --> UC6
+教师 --> UC7
+教师 --> UC8
+教师 --> UC9
+教师 --> UC10
+教师 --> UC11
+教师 --> UC15
+教师 --> UC14
+
+管理员 --> UC13
+管理员 --> UC15
+管理员 --> UC16
+管理员 --> UC17
+管理员 --> UC18
+管理员 --> UC19
+
+UC4 ..> UC3 : <<include>>
+UC7 ..> UC8 : <<include>>
+UC10 ..> UC9 : <<extend>>
+UC2 ..> UC1 : <<include>>
+
+@enduml

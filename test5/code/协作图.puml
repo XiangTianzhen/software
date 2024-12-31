@@ -1,0 +1,97 @@
+@startuml
+class 用户 {
+    用户ID: int
+    姓名: String
+    邮箱: String
+    密码: String
+}
+
+class 教师 {
+    教师ID: int
+    姓名: String
+    邮箱: String
+    密码: String
+}
+
+class 学生 {
+    学生ID: int
+    姓名: String
+    邮箱: String
+    密码: String
+}
+
+class 课程 {
+    课程ID: int
+    名称: String
+    描述: String
+    学分: int
+    授课教师ID: int
+    上课时间: String
+    地点: String
+}
+
+class 成绩 {
+    成绩ID: int
+    学生ID: int
+    课程ID: int
+    分数: float
+}
+
+class 排课 {
+    排课ID: int
+    课程ID: int
+    教师ID: int
+    教室ID: int
+    时间: String
+}
+
+class 教学资源 {
+    资源ID: int
+    标题: String
+    类型: String
+    上传者ID: int
+    文件路径: String
+}
+
+class 班级 {
+    班级ID: int
+    名称: String
+    班主任ID: int
+    学生列表: List
+}
+
+class 财务信息 {
+    财务ID: int
+    学生ID: int
+    缴费状态: String
+    欠费信息: String
+}
+
+class 系统 {
+    登录(): void
+    搜索课程(): void
+    创建订单(): void
+}
+
+class 数据库 {
+    查询用户信息(): void
+    查询课程信息(): void
+    查询成绩信息(): void
+}
+
+用户 --> 系统 : 登录请求
+系统 --> 数据库 : 查询用户信息
+数据库 --> 系统 : 返回用户信息
+系统 --> 用户 : 登录成功
+
+用户 --> 系统 : 搜索课程请求
+系统 --> 数据库 : 查询课程信息
+数据库 --> 系统 : 返回课程列表
+系统 --> 用户 : 显示课程列表
+
+用户 --> 系统 : 下单请求
+系统 --> 数据库 : 创建订单
+数据库 --> 系统 : 返回订单确认
+系统 --> 用户 : 下单成功
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+!define Rectangle class
+
+Rectangle 用户设备 {
+  移动应用
+  Web浏览器
+}
+
+Rectangle 应用服务器 {
+  教务管理系统
+}
+
+Rectangle 数据库服务器 {
+  数据库管理系统
+}
+
+Rectangle 支付系统 {
+  第三方支付API
+}
+
+用户设备 --> 应用服务器 : HTTP请求
+应用服务器 --> 数据库服务器 : SQL查询
+应用服务器 --> 支付系统 : 支付请求
+
+@enduml
